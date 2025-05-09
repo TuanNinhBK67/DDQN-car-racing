@@ -1,6 +1,6 @@
-from keras.layers import Dense, Activation
-from keras.models import Sequential, load_model
-from keras.optimizers import Adam
+from tensorflow.keras.layers import Dense, Activation
+from tensorflow.keras.models import Sequential, load_model
+from tensorflow.keras.optimizers import Adam
 import numpy as np
 import tensorflow as tf
 
@@ -112,8 +112,8 @@ class DDQNAgent(object):
         self.brain_eval.model.save(self.model_file)
         
     def load_model(self):
-        self.brain_eval.model = load_model(self.model_file)
-        self.brain_target.model = load_model(self.model_file)
+        self.brain_eval.model = load_model(self.model_file, compile = False)
+        self.brain_target.model = load_model(self.model_file, compile = False)
        
         if self.epsilon == 0.0:
             self.update_network_parameters()
